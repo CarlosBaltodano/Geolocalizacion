@@ -1,24 +1,86 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="Geolocalizacion Xplora"
              x:Class="Geolocalizacion.MainPage">
+    <StackLayout Padding="20"
+                 Spacing="20">
+        <Label Text="Ubicacion Actual"
+               FontSize="Title"
+               HorizontalTextAlignment="Center"
+               FontAttributes="Bold"/>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Latitud :"
+               FontSize="Medium"
+               FontAttributes="Bold"/>
+            <Label x:Name="latitud"
+                   FontSize="Medium"/>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Longitud :"
+               FontSize="Medium"
+               FontAttributes="Bold"/>
+            <Label x:Name="longitud"
+                   FontSize="Medium"/>
+        </StackLayout>
+        <ListView x:Name="Lista"
+                  HasUnevenRows="True"
+                  
+                  RowHeight="80"
+                  SeparatorColor="DimGray"
+                  SeparatorVisibility="None"
+                  ItemsSource="{Binding GeoList}">
+            <ListView.Header>
+                <StackLayout>
+                    <Label Text="Lista de ubicaciones : "
+                           FontSize="Title"
+                           FontAttributes="Bold"/>
+                </StackLayout>
+            </ListView.Header>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Frame Padding="10" BorderColor="#2196F3" Margin="0,5">
+                            <StackLayout>
+                                <Label TextColor="Black">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <FormattedString.Spans>
+                                                <Span Text="Latitud :" FontAttributes="Bold"/>
+                                                <Span Text="{Binding latitud}"/>
+                                            </FormattedString.Spans>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label TextColor="Black">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <FormattedString.Spans>
+                                                <Span Text="Longitud : " FontAttributes="Bold"/>
+                                                <Span Text="{Binding longitud}"/>
+                                            </FormattedString.Spans>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                            </StackLayout>
+                        </Frame>
 
-    <StackLayout>
-        <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
-            <Label Text="Welcome to Xamarin.Forms!" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
-        </Frame>
-        <Label Text="Start developing now" FontSize="Title" Padding="30,10,30,10"/>
-        <Label Text="Make changes to your XAML file and save to see your UI update in the running app with XAML Hot Reload. Give it a try!" FontSize="16" Padding="30,0,30,0"/>
-        <Label FontSize="16" Padding="30,24,30,0">
-            <Label.FormattedText>
-                <FormattedString>
-                    <FormattedString.Spans>
-                        <Span Text="Learn more at "/>
-                        <Span Text="https://aka.ms/xamarin-quickstart" FontAttributes="Bold"/>
-                    </FormattedString.Spans>
-                </FormattedString>
-            </Label.FormattedText>
-        </Label>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button Text="Obtener ubicación actual"
+                VerticalOptions="EndAndExpand"
+                x:Name="Btn"
+                BackgroundColor="#1976D2"
+                TextColor="White"
+                Clicked="Button_Clicked"
+                HeightRequest="60"/>
+        <Button Text="Limpiar lista"
+                TextColor="White"
+                Clicked="Clean_Clicked"
+                BackgroundColor="#FF4081"
+                x:Name="Clean"/>
     </StackLayout>
 
 </ContentPage>
