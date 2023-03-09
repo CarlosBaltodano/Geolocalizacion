@@ -42,18 +42,22 @@ namespace Geolocalizacion
             catch (FeatureNotSupportedException fnsEx)
             {
                 // Handle not supported on device exception
+                await DisplayAlert("Error",fnsEx.Message,"Ok");
             }
             catch (FeatureNotEnabledException fneEx)
             {
                 // Handle not enabled on device exception
+                await DisplayAlert("Error", fneEx.Message, "Ok");
             }
             catch (PermissionException pEx)
             {
                 // Handle permission exception
+                await DisplayAlert("Error", pEx.Message, "Ok");
             }
             catch (Exception ex)
             {
                 // Unable to get location
+                await DisplayAlert("Error", ex.Message, "Ok");
             }
         }
 
